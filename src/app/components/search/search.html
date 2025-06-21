@@ -1,0 +1,64 @@
+<div class="search-card">
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+      <div class="input-group">
+      
+
+        <div class="input-field">
+          <label for="from">From</label>
+          <input
+            id="from"
+            type="text"
+            matInput
+            placeholder="Departure city"
+            formControlName="from"
+            [matAutocomplete]="autoTo"
+            value="city"
+          />
+          <mat-autocomplete #autoTo="matAutocomplete">
+            <mat-option *ngFor="let city of filteredFromCities | async " [value]="city.value">
+              {{ city.display }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+
+
+
+        <div class="input-field">
+          <label for="to">To</label>
+          <input
+            id="to"
+            type="text"
+            matInput
+            placeholder="Destination city"
+            formControlName="to"
+            [matAutocomplete]="autoFrom"
+            value="city"
+          />
+          <mat-autocomplete #autoFrom="matAutocomplete">
+            <mat-option *ngFor="let city of filteredToCities | async " [value]="city.value">
+              {{ city.display }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        
+      
+       
+
+
+  
+        <div class="input-field">
+          <label for="date">Date</label>
+          <input id="date" formControlName="date" type="date" />
+        </div>
+  
+        <div class="button-wrapper">
+          <button type="submit" [disabled]="searchForm.invalid">
+            🔍 Search Buses
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  
