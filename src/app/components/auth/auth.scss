@@ -1,0 +1,63 @@
+.auth-container {
+    display: flex;
+    height: 100vh;
+    background-color: #1f54db;
+    position: relative; // Needed for absolutely placed child
+  
+    .register-card,
+    .login-card {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 20rem;
+    }
+  
+    .register-card {
+     
+  
+      .auth-card {
+        width: 100%;
+        max-width: 450px;
+      }
+  
+      .auth-header {
+        display: flex;
+        justify-content: space-around;
+        padding-bottom: 1rem;
+      }
+    }
+  
+    .login-card {
+      background-color: #fff3e0;
+      justify-content: flex-end;
+      padding: 2rem;
+      position: relative; // Important to anchor absolute child
+  
+      .bus {
+        position: absolute;
+        top: 2rem;
+        right: -37rem;
+        width: 1085px;
+        height: auto;
+        object-fit: contain;
+        z-index: 0;
+       // animation: floatBus 3s ease-in-out infinite;
+      }
+  
+      .auth-card {
+        z-index: 1;
+      }
+    }
+  }
+  
+  // Optional floating animation (feel free to tweak/remove)
+  @keyframes floatBus {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  

@@ -1,0 +1,28 @@
+.passenger-card {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 24px;
+    border-radius: 16px;
+    background-color: #fff;
+  }
+  input{
+    width: -webkit-fill-available;
+    height: 30px;
+    border-block-start-color: coral;
+  }
+  
+  .form-field {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .avatar-icon {
+    background: linear-gradient(135deg, #3f51b5, #5c6bc0);
+    border-radius: 50%;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+  

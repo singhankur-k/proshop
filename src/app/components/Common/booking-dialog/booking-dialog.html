@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>Book Your Ticket</h2>
+<mat-dialog-content>
+  <form [formGroup]="bookingForm" (ngSubmit)="onBook()">
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label>Passenger Name</mat-label>
+      <input matInput formControlName="passengerName" />
+      <mat-error *ngIf="bookingForm.get('passengerName')?.hasError('required')">
+        Passenger Name is required.
+      </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label>Contact Number</mat-label>
+      <input matInput formControlName="contactNo" />
+      <mat-error *ngIf="bookingForm.get('contactNo')?.hasError('required')">
+        Contact Number is required.
+      </mat-error>
+      <mat-error *ngIf="bookingForm.get('contactNo')?.hasError('pattern')">
+        Enter a valid 10-digit number.
+      </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" />
+      <mat-error *ngIf="bookingForm.get('email')?.hasError('required')">
+        Email is required.
+      </mat-error>
+      <mat-error *ngIf="bookingForm.get('email')?.hasError('email')">
+        Enter a valid email address.
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="primary" [disabled]="bookingForm.invalid" (click)="onBook()">
+    Book
+  </button>
+</mat-dialog-actions>

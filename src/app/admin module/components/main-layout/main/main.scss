@@ -1,0 +1,12 @@
+.main-layout {
+    display: flex;
+    height: calc(100vh - 64px); // Navbar height
+  }
+  
+  .content-area {
+    flex: 1;
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    overflow-y: auto;
+  }
+  

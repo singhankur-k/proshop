@@ -1,0 +1,26 @@
+<!-- <div class="greeting-card">
+    <img class="greeting" src="assets/greeting.png" alt="">
+</div> -->
+<div class="auth-container">
+    <div class="auth-card login-card">
+        <img class="bus"src="assets/namaste.png" alt="">
+        
+
+    </div>
+    
+  
+    <div class="auth-card register-card">
+        <mat-card class="auth-card mat-elevation-z8">
+            <mat-card-header class="auth-header">
+              <button mat-button [color]="showLogin ? 'primary' : ''" (click)="toggleForm(true)">Login</button>
+              <button mat-button [color]="!showLogin ? 'primary' : ''" (click)="toggleForm(false)">Register</button>
+            </mat-card-header>
+          
+            <mat-card-content>
+              <app-login-form *ngIf="showLogin"></app-login-form>
+              <app-register-form *ngIf="!showLogin"></app-register-form>
+            </mat-card-content>
+          </mat-card>          
+    </div>
+  </div>
+  

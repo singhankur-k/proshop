@@ -1,0 +1,18 @@
+:host {
+    width: 250px;
+    background-color: #f3f6fa;
+    height: 100vh;
+    padding-top: 1rem;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  mat-icon {
+    margin-right: 8px;
+  }
+  
+  a {
+    font-weight: 500;
+  }
+  

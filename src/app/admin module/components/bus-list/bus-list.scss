@@ -1,0 +1,23 @@
+.bus-list {
+    margin-top: 3rem;
+    margin-left: 3rem;
+    padding: 3rem;
+    border: 1px solid floralwhite;
+    table.mat-table {
+        background-color: #ffffff;
+        border-radius: 8px;
+      }
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+    table {
+      width: 100%;
+    }
+  }
+
+  table.mat-table {
+    background-color: #ffffff;
+    border-radius: 8px;
+  }

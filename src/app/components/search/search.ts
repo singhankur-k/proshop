@@ -7,21 +7,29 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { Observable, map ,startWith } from 'rxjs';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
+import { Output ,EventEmitter} from '@angular/core';
+
 
 
 @Component({
   selector: 'app-search',
+  
   templateUrl: './search.html',
   styleUrls: ['./search.scss'],
+  
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule,FormsModule,MatAutocompleteModule,MatInputModule,MatFormFieldModule]
+  imports: [RouterLink,MatCardModule,MatButtonModule,ReactiveFormsModule, CommonModule,FormsModule,MatAutocompleteModule,MatInputModule,MatFormFieldModule]
 })
 export class Search implements OnInit {
   searchForm!: FormGroup;
-  allRoutes: Route[] = [];
-  filteredRoutes: Route[] = [];
+  allRoutes: any[] | undefined = [];
+  filteredRoutes: any[] | undefined  = [] 
+  allSchedules: any ={}
   cities = ["lucknow", "delhi", "bangalore", "hyderabad", "kolkata", "mumbai", "new delhi", "chennai", "nagpur", "surat", "ahmedabad"];
-
+   @Output() ScheduleId = new EventEmitter<any>();
   cityAliasMap: { [alias: string]: string } = {
     lko: 'lucknow',
     dli: 'delhi',
@@ -36,14 +44,16 @@ export class Search implements OnInit {
     amd: 'ahmedabad'
   };
  // filteredCities: string[] = [];
+
  filteredFromCities!: Observable<{ value: string; display: string }[]>;
 filteredToCities!: Observable<{ value: string; display: string }[]>;
-
+  searchSubmitted  = false;
   // The variable bound to the input
   
 
 
   constructor(private fb: FormBuilder, private searchService: SearchService) {}
+  
 
   ngOnInit(): void {
     this.searchForm = this.fb.group({
@@ -51,6 +61,9 @@ filteredToCities!: Observable<{ value: string; display: string }[]>;
       to: ['', Validators.required],
       date: ['', Validators.required]
     });
+   
+  
+ 
     
     this.filteredFromCities = this.searchForm.get('from')!.valueChanges.pipe(
       startWith(''),
@@ -61,17 +74,31 @@ filteredToCities!: Observable<{ value: string; display: string }[]>;
       startWith(''),
       map(value => this.filterCities(value || ''))
     );
-  
-
+      this.loadAllRoutes();
+      this.loadAllSchedules();
+      
+       
   }
 
-  loadAllRoutes(): void {
-    this.searchService.getRoutes().subscribe((routes) => {
-      this.allRoutes = routes;
-      console.log(this.allRoutes);
+  loadAllSchedules(){
+    this.searchService.getAllSchedules().subscribe((x) => {
+      this.allSchedules= x;
+    })
+    console.log("Schedules are", this.allSchedules);
+    
+  }
+  
+  loadAllRoutes() : void{
+    this.searchService.getRoutes().subscribe((routes  ) => {
+      this.allRoutes = routes.data;
+      
+      
+      
       
     });
   }
+
+  
 
   filterCities(input: string): { value: string; display: string }[] {
     const query = input.toLowerCase();
@@ -112,13 +139,33 @@ filteredToCities!: Observable<{ value: string; display: string }[]>;
 
   onSearch(): void {
     if (this.searchForm.valid) {
-      const { from, to } = this.searchForm.value;
-      this.filteredRoutes = this.allRoutes.filter(route =>
-        route.source.toLowerCase() === from.toLowerCase() &&
-        route.destination.toLowerCase() === to.toLowerCase()
-      );
+      this.searchSubmitted =true;
+      console.log(this.searchSubmitted);
+     
 
-      console.log('Matching Routes:', this.filteredRoutes);
+     
+      const { from, to,date } = this.searchForm.value;
+
+      const targetDate= typeof date==='string'  ? date.split('T')[0]  : new Date(date).toISOString().slice(0,10) ;
+
+      console.log(date, "this is the date")
+      console.log("all route are",this.allRoutes);
+      this.filteredRoutes = this.allSchedules.data?.filter((route: any) =>
+        route?.route.source.toLowerCase() === from.toLowerCase() && 
+        route?.route.destination.toLowerCase() === to.toLowerCase() &&
+        route?.departureTime.slice(0,10)  === date
+      );
+         console.log("filtered",this.filteredRoutes);
+          this.ScheduleId.emit(this.filteredRoutes);
+    
+              
+       
     }
+  }
+  Select(routeId:any){
+    
+    
+  this.ScheduleId.emit(routeId);
+   
   }
 }

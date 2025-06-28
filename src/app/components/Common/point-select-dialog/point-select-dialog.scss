@@ -1,0 +1,8 @@
+/* Optional: Additional styling for dialog */
+:host {
+    display: block;
+  }
+  
+  mat-dialog-content {
+    padding-top: 20px;
+  }

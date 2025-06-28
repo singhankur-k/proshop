@@ -1,0 +1,125 @@
+.animation-container {
+    position: relative;
+    width: 1280px;
+    height: 500px;
+    overflow: hidden;
+    background: linear-gradient(to top, #87ceeb 60%, #fff 100%);
+  }
+  h1{
+    text-align: center;
+  }
+  
+  .sky {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to top, #87ceeb, #cceeff);
+    z-index: 0;
+  }
+  
+  .road {
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    height: 300px;
+    background: repeating-linear-gradient(
+      to right,
+      #4e4e4e,
+      #4e4e4e 40px,
+      #5c5c5c 40px,
+      #5c5c5c 80px
+    );
+    overflow: hidden;
+    animation: roadMove 2s linear infinite;
+  }
+  
+  .bus {
+    position: absolute;
+    bottom: 15px;
+    left: -150px;
+    width: 150px;
+    animation: moveBus 6s ease-in-out infinite;
+    z-index: 1;
+  }
+  
+  /* Optional wheels if not in SVG */
+  .wheel {
+    position: absolute;
+    bottom: 10px;
+    width: 24px;
+    height: 24px;
+    background: #333;
+    border-radius: 50%;
+    animation: spinWheel 1s linear infinite;
+    z-index: 2;
+  }
+  
+  .wheel-front {
+    left: 105px;
+  }
+  
+  .wheel-back {
+    left: 35px;
+  }
+  
+  @keyframes moveBus {
+    0% {
+      left: -150px;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+  
+  @keyframes roadMove {
+    from {
+      background-position-x: 0;
+    }
+    to {
+      background-position-x: 80px;
+    }
+  }
+  
+  @keyframes spinWheel {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    text-align: center;
+    letter-spacing: 1px;
+    text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+  
+    // Indian flag gradient
+    background: linear-gradient(
+      to right,
+      #FF9933,  /* Saffron */
+      #FFFFFF,  /* White */
+      #138808   /* Green */
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  
+    animation: fadeInSlide 0.8s ease-out both;
+  }
+  
+  @keyframes fadeInSlide {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

@@ -1,0 +1,135 @@
+<div class="deck-container" *ngIf="!isLoading">
+    <!-- Lower Deck Section -->
+    <div class="deck lower-deck">
+      
+    
+      <div class="deck-layout">
+        <!-- Sleeper Seats Column -->
+        
+        <div class="column sleeper-column">
+            
+          <div   class="seat-group">
+            
+            <div
+             
+              *ngFor="let seat of lowerSleeperSeats"
+              class="seat sleeper-seat"
+              [ngClass]="{
+                available: seat.status === 'Available',
+                booked: seat.status === 'Booked',
+                selected: seat.status === 'selected'
+              }"
+             
+              (click)="toggleSeat(seat)"
+              matTooltip="₹{{ seat.price }}"
+              matTooltipPosition="above"
+            >
+              {{ seat.seatNumber}}
+            </div>
+          </div>
+        </div>
+  
+        <!-- Chair Seats Column -->
+        <div class="column chair-column">
+            <h3 class="animated-heading">
+                <span class="wheel">🛞</span>
+                
+              </h3>
+          <div class="chair-group">
+            <div
+              *ngFor="let seat of lowerChairSeats"
+              class="seat chair-seat"
+              [ngClass]="{
+                available: seat.status === 'Available',
+               
+                booked: seat.status === 'Booked',
+                selected: seat.status === 'selected',
+              }"
+              (click)="toggleSeat(seat)"
+            >
+              {{ seat.seatNumber}}
+            </div>
+            <div
+              *ngFor="let seat of extraLowerSleeperSeats"
+              class="seat sleeper-seat"
+              [ngClass]="{
+                available: seat.status === 'Available',
+                booked: seat.status === 'Booked',
+                selected: seat.status === 'selected'
+              }"
+              (click)="toggleSeat(seat)"
+            >
+              {{ seat.id}}
+            </div>
+          </div>
+          
+
+        </div>
+      </div>
+    
+   </div>
+    <!-- Upper Deck Section -->
+    <div class="deck upper-deck">
+    
+      <div class="deck-layout">
+        <!-- Sleeper Seats Column -->
+        <div class="column sleeper-column">
+          
+          <div class="seat-group">
+            <div
+              *ngFor="let seat of UpperDeckSleeperSeats"
+              class="seat sleeper-seat"
+              [ngClass]="{
+                available: seat.status === 'Available',
+                booked: seat.status === 'Booked',
+                selected: seat.status === 'selected'
+              }"
+              (click)="toggleSeat(seat)"
+            >
+              {{ seat.seatNumber}}
+            </div>
+          </div>
+        </div>
+  
+        <!-- Chair Seats Column -->
+        <div class="column chair-column">
+            <h3>Upper Deck</h3>
+            <div class="chair-group">
+            
+              <div
+                *ngFor="let seat of upperDeckSleeperSideSeats"
+                class="seat sleeper-seat"
+                [ngClass]="{
+                  available: seat.status === 'Available',
+                  booked: seat.status === 'Booked',
+                  selected: seat.status === 'selected'
+                }"
+                (click)="toggleSeat(seat)"
+              >
+                {{ seat.seatNumber }}
+              </div>
+            </div>
+            
+  
+          </div>
+      </div>
+    </div>
+
+    
+        <app-card
+        [busName]="'Express Travels'"
+        [seatNumber]="getSelectedSeatNumbers()"
+        [totalFare]="calculateTotalFare()"
+        (passengerSelected)= "handlePassenger($event)">
+        
+      </app-card>
+      <div *ngIf="isBooking" class="spinner-overlay">
+        <mat-spinner diameter="50"></mat-spinner>
+      </div>
+      
+
+      
+
+    
+    
+  

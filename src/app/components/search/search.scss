@@ -118,3 +118,182 @@ $transition: 0.3s ease;
     }
   }
 }
+.results-wrapper {
+  
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+.route-container {
+  
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.route-card {
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  background: #ffffff;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  mat-card-header {
+    align-items: center;
+  }
+
+  mat-card-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+  }
+
+  mat-card-subtitle {
+    font-size: 0.85rem;
+    color: #777;
+  }
+
+  mat-card-content {
+    padding-top: 8px;
+    font-size: 0.95rem;
+    color: #444;
+
+    .route-metadata {
+      font-size: 0.8rem;
+      color: #999;
+      margin-top: 6px;
+    }
+  }
+
+  mat-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px 16px 16px;
+  }
+}
+
+.route-avatar {
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #42a5f5, #478ed1);
+  border-radius: 50%;
+  color: white;
+}
+
+.no-results {
+  margin-top: 32px;
+  color: #999;
+  font-size: 1.1rem;
+  text-align: center;
+
+  &.no-results-animation {
+    animation: fadeInSlideIn 600ms ease-out forwards;
+  }
+
+  .bus-animation {
+    width: 90%;
+    
+    margin: 0 auto 10px;
+    mix-blend-mode: multiply;
+    
+
+   
+    img {
+      
+      width: 100%;
+      animation: bounce 2s infinite ease-in-out;
+      mix-blend-mode: multiply;
+      background-color: transparent;
+
+    }
+  }
+}
+
+// Fade-in animation
+@keyframes fadeInSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Bus bounce animation
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+// ------------------
+// Responsive Layout
+// ------------------
+
+@media (max-width: 768px) {
+  .search-card {
+    padding: 1.5rem;
+
+    .input-group {
+      flex-direction: column;
+
+      .input-field,
+      .button-wrapper {
+        flex: 1 1 100%;
+      }
+
+      .button-wrapper {
+        justify-content: center;
+      }
+    }
+  }
+}
+.route-details {
+  padding-top: 8px;
+}
+
+.info-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.info-item {
+  flex: 1 1 45%;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-item label {
+  font-weight: 600;
+  color: #3f51b5;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.info-item span {
+  font-size: 15px;
+  color: #333;
+}
+
+.route-metadata {
+  font-size: 13px;
+  color: #757575;
+  margin-top: 6px;
+}

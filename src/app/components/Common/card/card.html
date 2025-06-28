@@ -1,0 +1,23 @@
+<mat-card class="bus-card">
+  <mat-card-header>
+    <mat-card-title>{{ busName }}</mat-card-title>
+    <mat-card-subtitle>Seat: {{ seatNumber }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-form-field appearance="fill" class="passenger-input">
+      <mat-label>Passenger Name</mat-label>
+      <input matInput [(ngModel)]="passengerName"  placeholder="Enter full name" />
+    </mat-form-field>
+
+    <p><strong>Total Fare: </strong>{{ totalFare }}</p>
+    <p *ngIf="boardingPoint"><strong>Boarding Point: </strong>{{ boardingPoint }}</p>
+    <p *ngIf="droppingPoint"><strong>Dropping Point: </strong>{{ droppingPoint }}</p>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-raised-button color="accent" (click)="onNameChange()">
+      Book
+    </button>
+  </mat-card-actions>
+</mat-card>
