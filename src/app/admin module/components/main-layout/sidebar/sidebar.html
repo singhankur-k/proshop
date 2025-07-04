@@ -3,10 +3,27 @@
       <mat-icon>dashboard</mat-icon>
       <span>Dashboard</span>
     </a>
-    <a mat-list-item routerLink="/buses">
+  
+    <!-- Buses Main Item -->
+    <a mat-list-item (click)="toggleBuses()" style="cursor: pointer;">
       <mat-icon>directions_bus</mat-icon>
       <span>Buses</span>
+      <span class="spacer"></span>
+      <mat-icon>{{ showBusMenu ? 'expand_less' : 'expand_more' }}</mat-icon>
     </a>
+  
+    <!-- Submenu under Buses -->
+    <div *ngIf="showBusMenu" class="submenu">
+      <a mat-list-item [routerLink]="['buses']">
+        <mat-icon>visibility</mat-icon>
+        <span>View Buses</span>
+      </a>
+      <a mat-list-item routerLink="buses/add">
+        <mat-icon>add_circle</mat-icon>
+        <span>Add New Bus</span>
+      </a>
+    </div>
+  
     <a mat-list-item routerLink="/bookings">
       <mat-icon>event_seat</mat-icon>
       <span>Bookings</span>

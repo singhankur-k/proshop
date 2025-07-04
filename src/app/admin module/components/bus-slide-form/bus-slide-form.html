@@ -1,0 +1,84 @@
+<!-- <mat-drawer-container class="drawer-container" autosize>
+   
+    
+    <mat-drawer #drawer position="end" mode="over" class="drawer small">
+      <div class="form-header">
+        <h2 class="form-title">Add Bus</h2>
+        <button mat-icon-button (click)="drawer.close()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    
+      <form (ngSubmit)="submitBusForm()" #busForm="ngForm" class="form-body">
+       
+      </form>
+    </mat-drawer>
+    </mat-drawer-container> -->
+    
+    <!-- bus-slide-form.component.html -->
+    <div class="page-wrapper" [class.blurred]="drawer.opened">
+<mat-drawer-container class="drawer-container" autosize>
+    <mat-drawer
+      #drawer
+      position="end"
+      mode="over"
+      class="drawer small"
+      (closedStart)="onClose.emit()"
+    >
+      <div class="form-header">
+        <h2 class="form-title">Add Bus</h2>
+        <button #drawer2 mat-icon-button (click)="close()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+  
+      <form (ngSubmit)="submitBusForm()" #busForm="ngForm"  class="form-body">
+        <!-- … your form fields … -->
+        <mat-form-field appearance="fill" class="form-field dense">
+            <mat-label>Bus Name</mat-label>
+            <input matInput name="busName" ngModel required />
+          </mat-form-field>
+      
+          <mat-form-field appearance="fill" class="form-field dense">
+            <mat-label>Bus Number</mat-label>
+            <input matInput name="busNumber" ngModel required />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field dense">
+            <mat-label>User Id</mat-label>
+            <input matInput name="userId" ngModel required />
+          </mat-form-field>
+      
+          <mat-form-field appearance="fill" class="form-field dense">
+            <mat-label>Bus Type</mat-label>
+            <mat-select name="busType" ngModel required>
+              <mat-option value="AC">AC</mat-option>
+              <mat-option value="Non-AC">Non-AC</mat-option>
+              <mat-option value="Sleeper">Sleeper</mat-option>
+            </mat-select>
+          </mat-form-field>
+      
+          <mat-form-field appearance="fill" class="form-field dense">
+            <mat-label>Seat Capacity</mat-label>
+            <input matInput type="number" name="seatCapacity" ngModel required />
+          </mat-form-field>
+      
+          <mat-form-field appearance="fill" class="form-field dense">
+            <mat-label>Status</mat-label>
+            <mat-select name="busStatus" ngModel>
+              <mat-option [value]="true">Active</mat-option>
+              <mat-option [value]="false">Inactive</mat-option>
+            </mat-select>
+          </mat-form-field>
+      
+          <div class="actions">
+            <button mat-stroked-button color="warn" class="btn-color" (click)="drawer.close()">Cancel</button>
+            <button mat-flat-button color="primary" type="submit">
+              <mat-icon>save</mat-icon> Save
+            </button>
+          </div>
+       
+      </form>
+    </mat-drawer>
+  </mat-drawer-container>
+  </div>

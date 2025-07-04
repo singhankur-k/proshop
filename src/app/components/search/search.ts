@@ -28,7 +28,7 @@ export class Search implements OnInit {
   allRoutes: any[] | undefined = [];
   filteredRoutes: any[] | undefined  = [] 
   allSchedules: any ={}
-  cities = ["lucknow", "delhi", "bangalore", "hyderabad", "kolkata", "mumbai", "new delhi", "chennai", "nagpur", "surat", "ahmedabad"];
+  cities = ["lucknow", "delhi", "bangalore", "hyderabad", "kolkata", "mumbai", "new delhi", "chennai", "nagpur", "surat", "ahmedabad","kanpur"];
    @Output() ScheduleId = new EventEmitter<any>();
   cityAliasMap: { [alias: string]: string } = {
     lko: 'lucknow',
@@ -41,7 +41,8 @@ export class Search implements OnInit {
     ndl: 'new delhi',
     nag: 'nagpur',
     sur: 'surat',
-    amd: 'ahmedabad'
+    amd: 'ahmedabad',
+    kan: 'kanpur'
   };
  // filteredCities: string[] = [];
 

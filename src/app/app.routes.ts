@@ -6,6 +6,8 @@ import { PassengerFormComponent } from './components/passenger-detail/passenger-
 import { Auth } from './components/auth/auth';
 import { BusListComponent } from './admin module/components/bus-list/bus-list';
 import { Main } from './admin module/components/main-layout/main/main';
+import { authGuard } from './components/auth/auth-guard/auth-guard-guard';
+import { BusFormComponent } from './admin module/components/bus-form/bus-form';
 
 export const routes: Routes = [
     {
@@ -30,15 +32,31 @@ export const routes: Routes = [
         component: PassengerFormComponent
     },
     {
-        path:'auth',
+        path:'login',
         component:Auth
     },
+   
+   
     {
-        path:'admin',
-        component: BusListComponent
-    },
-    {
-        path:'main',
-        component:Main
-    }
+        path: 'dashboard',
+        component: Main,
+        canActivate: [authGuard],
+        // canActivateChild:[authGuard],
+        children: [
+        
+          { path: 'buses', 
+            component: BusListComponent
+         },
+         {
+            path: 'buses/add',
+            component: BusFormComponent
+         }
+         
+        ]
+      },
+
+      { path: '**', redirectTo: 'login' }
+
+     
+
 ];

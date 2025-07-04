@@ -57,6 +57,7 @@ export class SearchService {
   private apiUrl = 'http://localhost:5241/api/Routes';
   private apiSeatStatusUrl ='http://localhost:5241/api/SeatStatus'
   private apiLoginAuthUrl ='http://localhost:5241/api/Login'
+  private baseUrl = 'http://localhost:5241/api'
 
   constructor(private http: HttpClient) {}
 
@@ -85,5 +86,19 @@ export class SearchService {
 
   loginAuth(data:any):Observable<any>{
     return this.http.post<any>(this.apiLoginAuthUrl,data);
+  }
+
+  loginWithCookie(data:any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/login/cookie`, data, {
+      withCredentials: true // this is critical to allow browser to store the cookie
+    });
+  }
+
+  isAuthenticatedFromServer() {
+    return this.http.get<boolean>('http://localhost:5241/api/Login/validate', { withCredentials: true });
+  }
+
+  clearCookie(){
+    return this.http.post('http://localhost:5241/api/Login/clear',{},{ withCredentials: true });
   }
 }

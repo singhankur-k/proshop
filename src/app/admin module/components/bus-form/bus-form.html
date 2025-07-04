@@ -1,0 +1,48 @@
+<div class="form-container">
+    <form [formGroup]="busForm" (ngSubmit)="onSubmit()">
+      <h2>Add New Bus</h2>
+  
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Bus No</mat-label>
+        <input matInput formControlName="busNumber" placeholder="e.g. MH12AB1234" />
+        <mat-error *ngIf="busForm.get('busNumber')?.hasError('required')">Bus No is required</mat-error>
+        <mat-error *ngIf="busForm.get('busNumber')?.hasError('pattern')">Enter valid format (e.g. MH12AB1234)</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Bus Name</mat-label>
+        <input matInput formControlName="busName" />
+        <mat-error *ngIf="busForm.get('busName')?.hasError('required')">Bus Name is required</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Type</mat-label>
+        <mat-select formControlName="busType">
+          <mat-option *ngFor="let type of busTypes" [value]="type">{{ type }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="busForm.get('type')?.hasError('required')">Type is required</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Capacity</mat-label>
+        <input type="number" matInput formControlName="seatCapacity" />
+        <mat-error *ngIf="busForm.get('capacity')?.hasError('required')">Capacity is required</mat-error>
+        <mat-error *ngIf="busForm.get('capacity')?.hasError('min')">Minimum capacity is 10</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="busStatus">
+          <mat-option *ngFor="let status of statuses" [value]="status === 'Active' ? true : false">{{ status }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="busForm.get('status')?.hasError('required')">Status is required</mat-error>
+      </mat-form-field>
+  
+      <div class="btn-wrapper">
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+        <button mat-button color="warn" type="reset">Reset</button>
+      </div>
+    </form>
+    
+  </div>
+  <mat-spinner *ngIf="isLoading" color="primary" diameter="40"></mat-spinner>

@@ -11,4 +11,9 @@ import { MatListModule } from '@angular/material/list';
   templateUrl: './sidebar.html',
   styleUrls: ['./sidebar.scss']
 })
-export class SidebarComponent {}
+export class SidebarComponent {
+  showBusMenu :boolean= false;
+  toggleBuses() {
+    this.showBusMenu = !this.showBusMenu;
+  }
+}

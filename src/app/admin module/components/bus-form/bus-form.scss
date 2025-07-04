@@ -1,0 +1,42 @@
+.form-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-top: 0;
+    background: ghostwhite;
+    h2 {
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      text-align: center;
+      color: #3f51b5;
+    }
+  
+    .full-width {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+  
+    .btn-wrapper {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1.5rem;
+  
+      button {
+        min-width: 120px;
+      }
+    }
+  }
+  
+.success{
+  background-color: red;
+}
+
+//   .mat-mdc-snack-bar-container .mat-mdc-snackbar-surfacesuccess{
+//     background-color: rgb(128, 36, 0);
+//   }
+// .success .mat-mdc-snack-bar-actions {
+//   background-color: green;
+//   color: black;
+//   }
+

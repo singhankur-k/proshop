@@ -6,6 +6,7 @@ import { CardComponent } from '../Common/card/card';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -47,7 +48,8 @@ export class SeatMapComponent implements OnInit {
     private searchService: SearchService,
     private cdr: ChangeDetectorRef,
     private route: ActivatedRoute,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private toaster: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -86,18 +88,15 @@ export class SeatMapComponent implements OnInit {
     this.searchService.createBooking(bookingInfo).subscribe({
       next: () => {
         this.isBooking = false;
-        this.snackBar.open('Booking successful!', 'Close', {
-          duration: 3000,
-          verticalPosition: 'top',
-        });
+        this.cdr.detectChanges();
+        this.toaster.success("Ticket Booked Successfully")
       },
       error: (err) => {
         this.isBooking = false;
+        this.cdr.detectChanges();
+        this.toaster.error("Booking Failed, Please try again")
         console.error('Booking failed', err);
-        this.snackBar.open('Booking failed. Please try again.', 'Close', {
-          duration: 3000,
-          verticalPosition: 'top',
-        });
+       
       }
     });
   }

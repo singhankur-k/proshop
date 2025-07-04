@@ -1,23 +1,67 @@
 .bus-list {
-    margin-top: 3rem;
-    margin-left: 3rem;
-    padding: 3rem;
-    border: 1px solid floralwhite;
-    table.mat-table {
-        background-color: #ffffff;
-        border-radius: 8px;
-      }
+    padding: 2rem;
+    background-color: #f5f7fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  
     .toolbar {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 1rem;
+      align-items: center;
+      margin-bottom: 1.5rem;
+  
+      .search-box {
+        width: 60%;
+      }
+  
+      .add-btn {
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: linear-gradient(to right, #2196f3, #21cbf3);
+        color: white;
+      }
     }
-    table {
+  
+    .bus-table {
       width: 100%;
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+  
+      th.mat-header-cell {
+        background-color: #1976d2;
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+  
+      td.mat-cell {
+        font-size: 0.95rem;
+        color: #333;
+      }
+  
+      tr.mat-row:hover {
+        background-color: #f0f8ff;
+      }
+  
+      button[mat-icon-button] {
+        margin-right: 0.5rem;
+      }
+    }
+  
+    mat-paginator {
+      margin-top: 1rem;
     }
   }
-
-  table.mat-table {
-    background-color: #ffffff;
-    border-radius: 8px;
+  .page-blur-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(6px);
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 999;
   }

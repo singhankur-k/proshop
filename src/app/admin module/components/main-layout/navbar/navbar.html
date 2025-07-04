@@ -1,11 +1,33 @@
 <mat-toolbar color="primary" class="navbar">
-    <span class="logo">🚌 Bus Booking</span>
-    <span class="spacer"></span>
-    <button mat-icon-button>
-      <mat-icon>notifications</mat-icon>
-    </button>
-    <button mat-icon-button>
-      <mat-icon>account_circle</mat-icon>
-    </button>
-  </mat-toolbar>
-  
+  <span class="logo"><img src="assets/logo.png" alt=""></span>
+  <span class="spacer"></span>
+
+  <button mat-icon-button>
+    <mat-icon>notifications</mat-icon>
+  </button>
+
+  <button mat-icon-button [matMenuTriggerFor]="userMenu">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-menu #userMenu="matMenu">
+  <!-- display the username (replace `username` with your bound property) -->
+  <button mat-menu-item disabled>
+    <mat-icon>person</mat-icon>
+    <span>{{ username }}</span>
+  </button>
+  <mat-divider></mat-divider>
+
+  <!-- settings -->
+  <button mat-menu-item (click)="openSettings()">
+    <mat-icon>settings</mat-icon>
+    <span>Settings</span>
+  </button>
+
+  <!-- logout -->
+  <button mat-menu-item (click)="logout()">
+    <mat-icon>exit_to_app</mat-icon>
+    <span>Logout</span>
+  </button>
+</mat-menu>
